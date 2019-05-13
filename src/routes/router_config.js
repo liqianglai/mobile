@@ -1,4 +1,6 @@
 // component 文件路径，相对 /src/views
+import router_weixin from "./router_weixin";
+
 export default {
   navigation: {
     path: "/",
@@ -30,5 +32,6 @@ export default {
         }
       }
     }
-  }
+  },
+  weixin: router_weixin
 };
