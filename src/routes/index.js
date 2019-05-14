@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Modal } from "antd-mobile";
 
 import router_config from "./router_config";
+import loadingSvg from "../assets/images/loading.svg";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -30,6 +31,15 @@ function renderRoute(obj = router_config) {
 }
 renderRoute();
 
+const Loading = (
+  <div
+    style={{
+      height: "100vh",
+      background: `no-repeat center url(${loadingSvg})`
+    }}
+  />
+);
+
 export default () => (
   <Router
     getUserConfirmation={(message, callback) => {
@@ -49,7 +59,7 @@ export default () => (
         返回
       </button>
     )}
-    <Suspense maxDuration={300} fallback={<div>loading</div>}>
+    <Suspense maxDuration={300} fallback={Loading}>
       {RouteList}
     </Suspense>
   </Router>
