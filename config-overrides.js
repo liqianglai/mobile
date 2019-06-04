@@ -13,5 +13,9 @@ module.exports = override(
   addLessLoader({
     javascriptEnabled: true,
     modifyVars: { "@brand-primary": "red", "@color-text-base": "#333" }
+  }),
+  addWebpackExternals({
+    react: "React",
+    "react-dom": "ReactDOM"
   })
 );
