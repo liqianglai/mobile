@@ -42,6 +42,7 @@ const Loading = (
 
 export default () => (
   <Router
+    basename="/project/"
     getUserConfirmation={(message, callback) => {
       Modal.alert("提示", message, [
         { text: "取消", onPress: () => callback(false) },

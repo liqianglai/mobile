@@ -25,7 +25,14 @@ npm run build # or yarn build
 /build/*.*
 /build/static/js/修改的页面
 /build/static/js/runtime~main.xxx.js
+# 第三方库，添加或删除需要
+/build/static/js/[数字].xxx.js
 ```
+
+## 部署 相对路径
+
+- 打包前修改如下文件
+  - `/src/routes/index.js@basename`
 
 ## 部分功能
 
@@ -139,7 +146,7 @@ npm run build # or yarn build
     news: {
       path: "/news",
       component: "/news",
-      exact: false,
+      exact: false, // 是否和后代的路由为父子关系，默认为 true，true-没有关系 false-父子关系
       children: {
         list: {
           path: "/news/list",
@@ -169,33 +176,67 @@ npm run build # or yarn build
 
   ```bash
   # 方式一
-  /router/:p1/:p2
-  # 取值
-  const data = this.props.match.params;
-
-  # 方式二
   /router?p1=v1&p2=v2
   # 取值
-  const data = this.props.location.search;
+  解析 window.location.search(?p1=v1&p2=v2) 即可
+
+  # 方式二
+  /router/:p1/:p2
+  # 取值
+  const {p1, p2} = this.props.match.params;
 
   # 方式三
   const path = {
     pathname : '/router',
+    query : {
+      p1: v1,
+      p2: v2
+    }
+  }
+  # 取值，页面刷新 v1 v2 丢失
+  const {p1, p2} = this.props.location.query;
+
+  # 方式四
+  const path = {
+    pathname : '/router',
     state : {
       p1: v1,
-    },
-    query: {
       p2: v2
     }
   }
   # 取值
-    const p1 = this.props.location.state, # v1
-      p2 = this.props.location.query; # v2 刷新页面后会丢失
+  const {p1, p2} = this.props.location.state;
   ```
 
   - 查找页面，根据路径查找即可
 
   - 依赖加载，可以使用 `Suspense lazy` 或 `lazy-load-react` 或 `react-loadable`
+
+- 单页面应用部署问题
+
+  - 前后台一块部署
+
+  ```bash
+  # JAVA拦截器拦截特定字符做统一跳转
+  ```
+
+  - 前后台分开部署
+
+  ```bash
+  # Nginx修改反回状态码
+  # 接口 location
+  location /api {
+    proxy_pass http://api.server.com;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    rewrite ^/api(/.*)$ $1 break;
+  }
+  # 前端代码 location
+  location /front_end {
+    root /data;
+    error_page 404 =200 /front_end/index.html;
+  }
+  ```
 
 ## 一些项目
 

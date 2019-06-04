@@ -3040,10 +3040,10 @@ cssstyle@^1.0.0, cssstyle@^1.1.1:
   dependencies:
     cssom "0.3.x"
 
-customize-cra@^0.2.12:
-  version "0.2.12"
-  resolved "https://registry.npm.taobao.org/customize-cra/download/customize-cra-0.2.12.tgz#ffc9b6378cbdffbe29ad02c479ae5d7a502aca69"
-  integrity sha1-/8m2N4y9/74prQLEea5delAqymk=
+customize-cra@^0.2.13:
+  version "0.2.13"
+  resolved "https://registry.npm.taobao.org/customize-cra/download/customize-cra-0.2.13.tgz#d49e493ce7e9f4d8a2a1ae57e2f50f71e7815f60"
+  integrity sha1-1J5JPOfp9Niioa5X4vUPceeBX2A=
   dependencies:
     lodash.flow "^3.5.0"
 

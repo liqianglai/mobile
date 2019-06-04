@@ -6,7 +6,7 @@
     "antd-mobile": "^2.2.13",
     "babel-jest": "24.7.1",
     "babel-plugin-import": "^1.11.0",
-    "customize-cra": "^0.2.12",
+    "customize-cra": "^0.2.13",
     "http-proxy-middleware": "^0.19.1",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
@@ -17,8 +17,9 @@
     "react-scripts": "3.0.0",
     "source-map-explorer": "^1.8.0"
   },
+  "homepage": ".",
   "scripts": {
-    "start": "set port=80&&react-app-rewired start",
+    "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "analyze": "source-map-explorer build/static/js/main.*",
     "test": "react-app-rewired test",
