@@ -2,7 +2,8 @@ const {
   override,
   fixBabelImports,
   addLessLoader,
-  addWebpackExternals
+  addWebpackExternals,
+  addPostcssPlugins
 } = require("customize-cra");
 
 module.exports = override(
@@ -17,5 +18,10 @@ module.exports = override(
   addWebpackExternals({
     react: "React",
     "react-dom": "ReactDOM"
-  })
+  }),
+  addPostcssPlugins([
+    require("postcss-px-to-viewport")({
+      viewportWidth: 750
+    })
+  ])
 );
