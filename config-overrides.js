@@ -21,7 +21,8 @@ module.exports = override(
   }),
   addPostcssPlugins([
     require("postcss-px-to-viewport")({
-      viewportWidth: 750
+      viewportWidth: 750,
+      selectorBlackList:['am-']
     })
   ])
 );
